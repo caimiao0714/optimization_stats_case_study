@@ -1,0 +1,5 @@
+path ID,path,distance,rank by distance,risk_logit,rank by logistic,risk_poi,rank by Poisson,risk_Xgboost,rank by Xgboost,ANN,rank by ANN
+1,"['node 1', 'node 12', 'node 9', 'node 14']",4500,1,0.481840613,1,1.311533533,1,1.445882976,1,0.165423199,4
+2,"['node 1', 'node 7', 'node 10', 'node 4', 'node 14']",4800,2,0.526069174,2,2.166874902,2,1.922017038,2,0.000665801,3
+3,"['node 1', 'node 11', 'node 10', 'node 4', 'node 14']",4800,3,0.573492701,3,2.216023778,3,1.92372024,3,0.000653161,2
+4,"['node 1', 'node 11', 'node 5', 'node 7', 'node 10', 'node 4', 'node 14']",5600,4,0.659954013,4,2.265824496,4,2.88453871,4,0.000646536,1
