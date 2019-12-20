@@ -15,19 +15,23 @@ d = data.table::fread("data/lk_risks.csv") %>%
   mutate(`stats model` = case_when(`stats model` == "logit" ~ "Logistic",
                                    `stats model` == "poisson" ~ "Poisson",
                                    `stats model` == "xgboost" ~ "XGBoost",
-                                   `stats model` == "DL" ~ "Deep Learning") %>% 
-           factor(levels = c("Logistic", "Poisson", "XGBoost", "Deep Learning")))
+                                   `stats model` == "DL" ~ "Deep\nLearning") %>% 
+           factor(levels = c("Logistic", "Poisson", "XGBoost", "Deep\nLearning")))
 
 p = d %>% 
   ggplot(aes(x = path, y = `stats model`, fill = `risk rank`)) + 
   scale_fill_viridis(option="magma", 
                      breaks = c(1, 5, 10, 15, 20), 
                      guide = guide_legend(reverse = FALSE)) + 
-  scale_x_continuous(expand = c(0, 0), limits = c(0, 21)) + 
+  #scale_x_continuous(expand = c(0, 0), limits = c(0, 21)) + 
   geom_raster() + 
   theme_tufte(ticks = F) + 
-  theme(plot.margin = unit(c(0, 0, 0, 0), "cm"),
-        axis.title.y = element_blank())
+  theme(axis.title.y = element_blank(),
+        panel.grid = element_blank(),
+        panel.border = element_blank(),
+        axis.text.x = element_text(margin = margin(t = -5, r = 0, b = 0, l = 0)),
+        axis.text.y = element_text(margin = margin(t = 0, r = -3, b = 0, l = 0),
+                                   hjust = 0))
 #title = "Concordance of four models for evaluating the risk of crash",
        #caption = "Darker color indicates higher rank of crash risk") 
 p
