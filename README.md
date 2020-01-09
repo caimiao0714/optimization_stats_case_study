@@ -1,1 +1,3 @@
-# optimization_stats_case_study
+# Supplemetary materials to Part 2 -- Integrating the Two Disparate Research Streams
+
+This GitHub page website serves as the supplementary materials for the manuscript *Bridging the Gap between Optimization and Statistical Modeling of Large Truck Safety: A Review -- Part 2: Prescriptive Modeling and an Example Integrating the Two Disparate Research Streams*, which has been submitted to [Sensors](https://www.mdpi.com/journal/sensors).
