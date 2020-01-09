@@ -1,5 +1,4 @@
 pacman::p_load(dplyr, ggplot2, data.table, tidyr, ggthemes, viridis, showtext)
-showtext_auto()
 
 d = data.table::fread("data/lk_risks.csv") %>% 
   mutate(path = paste(`Node A`, `Node Z`, sep = "-") %>% 
@@ -40,27 +39,4 @@ p = d %>%
 p
 
 ggsave("Figures/concordance_4_models_white_border.pdf", p, width = 10*0.8, height = 4*0.8)
-
-
-
-# no border
-p1 = d %>% 
-  ggplot(aes(x = path, y = `stats model`, fill = `risk rank`)) + 
-  scale_fill_viridis(option="magma", 
-                     breaks = c(1, 5, 10, 15, 20), 
-                     guide = guide_legend(reverse = FALSE)) + 
-  geom_tile() + 
-  xlab("Path: node A - node Z") + 
-  theme_tufte(ticks = F) + 
-  theme(axis.title.y = element_blank(),
-        axis.title.x = element_text(hjust = 1),
-        panel.grid = element_blank(),
-        panel.border = element_blank(),
-        axis.text.x = element_text(margin = margin(t = -2, r = 0, b = 0, l = 0)),
-        axis.text.y = element_text(margin = margin(t = 0, r = -3, b = 0, l = 0),
-                                   hjust = 0)) 
-
-p1
-
-ggsave("Figures/concordance_4_models.pdf", p1, width = 10*0.8, height = 4*0.8)
 
