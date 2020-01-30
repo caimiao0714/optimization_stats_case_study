@@ -4,8 +4,8 @@ d = data.table::fread("data/lk_risks.csv") %>%
   mutate(path = paste(`Node A`, `Node Z`, sep = "-") %>% 
            gsub("node ", "", .)) %>% 
   select(path, starts_with("risk_")) %>% 
-  mutate_each(function(x)dense_rank(desc(x)), -path) %>% 
-  arrange(risk_logit) %>% 
+  mutate_each(function(x)dense_rank(x), -path) %>% 
+  arrange(desc(risk_logit)) %>% 
   mutate(path = factor(path, levels = .$path)) %>% 
   pivot_longer(cols = risk_logit:risk_DL, 
                names_to = "stats model", 
@@ -22,9 +22,10 @@ d = data.table::fread("data/lk_risks.csv") %>%
 # white border outside of boxes
 p = d %>% 
   ggplot(aes(x = path, y = `stats model`, fill = `risk rank`)) + 
-  scale_fill_viridis(option="magma", 
-                     breaks = c(1, 5, 10, 15, 20), 
-                     guide = guide_legend(reverse = FALSE)) + 
+  scale_fill_viridis(option = "magma", 
+                     direction = -1,
+                     breaks = seq(1, 21, 4), 
+                     guide = guide_legend(reverse = F)) + 
   geom_tile(color = "white") + 
   xlab("Path: node A - node Z") + 
   theme_tufte(ticks = F) + 
@@ -38,5 +39,5 @@ p = d %>%
  
 p
 
-ggsave("Figures/concordance_4_models_white_border.pdf", p, width = 10*0.8, height = 4*0.8)
+ggsave("Figures/concordance_4_models_white_border_1.pdf", p, width = 10*0.8, height = 4*0.8)
 
