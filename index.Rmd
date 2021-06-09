@@ -18,7 +18,11 @@ knitr::opts_chunk$set(echo = TRUE,
                       fig.height = 8*0.418)
 ```
 
-This GitHub page website serves as the supplementary materials for the manuscript *Bridging the Gap between Optimization and Statistical Modeling of Large Truck Safety: A Review -- Part 2: Prescriptive Modeling and an Example Integrating the Two Disparate Research Streams*, submitted to [Sensors](https://www.mdpi.com/journal/sensors).
+This GitHub page website serves as the supplementary materials for the paper
+
+> Hu, Q.; Cai, M.; Mohabbati-Kalejahi, N.; Mehdizadeh, A.; Alamdar Yazdi, M.A.; Vinel, A.; Rigdon, S.E.; Davis, K.C.; Megahed, F.M. [A Review of Data Analytic Applications in Road Traffic Safety. Part 2: Prescriptive Modeling](https://www.mdpi.com/1424-8220/20/4/1096). Sensors 2020, 20, 1096
+
+
 
 
 Simulating risk data
@@ -65,7 +69,7 @@ Concordance plot
 ================
 We also include a concordance plot to show the prediction results in different models. The R code to reproduce the plot can be found below:
 
-```{r eval=T}
+```{r eval=T, warning=FALSE}
 pacman::p_load(dplyr, ggplot2, data.table, tidyr, ggthemes, viridis, showtext)
 
 d = data.table::fread("data/lk_risks.csv") %>% 
@@ -86,7 +90,7 @@ d = data.table::fread("data/lk_risks.csv") %>%
            factor(levels = c("Logistic", "Poisson", "XGBoost", "Deep Learning")))
 ```
 
-```{r eval=T}
+```{r eval=T, warning=FALSE}
 d %>% 
   ggplot(aes(x = path, y = `stats model`, fill = `risk rank`)) + 
   scale_fill_viridis(option = "magma", 
